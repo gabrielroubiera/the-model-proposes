@@ -1,8 +1,8 @@
 <div align="center">
 
-# the-model-proposes
+# The Model Proposes
 
-### The model proposes. Code decides. Evals judge.
+### Code decides. Evals judge.
 
 Field notes and measured experiments on building **reliable** LLM systems.
 
@@ -21,7 +21,10 @@ Field notes and measured experiments on building **reliable** LLM systems.
 
 An LLM is a brilliant, unreliable collaborator. Most production failures come from
 asking it to *guarantee* things: permissions, arithmetic, confirmations, identifiers.
-This repo explores the opposite split, one small experiment at a time.
+
+This repo takes those guarantees away from the model and gives them to code. The model
+only proposes; code checks every proposal before anything happens, and evals measure
+whether the whole thing works. One small experiment at a time.
 
 ```mermaid
 flowchart LR
@@ -33,13 +36,13 @@ flowchart LR
     E -.-> C
 ```
 
-> **The model** extracts, classifies and writes.
-> **Code** authorizes, verifies and composes.
+> **The model** extracts, classifies and writes.<br/>
+> **Code** authorizes, verifies and composes.<br/>
 > **Evals** tell you whether any of it is true.
 
 ## Principles
 
-| | |
+| Principle | What it means |
 |---|---|
 | **Measure, don't vibe** | Every claim comes with a number, an interval and its cost. |
 | **Break it first** | Each entry starts with the test that reproduces the failure. |
