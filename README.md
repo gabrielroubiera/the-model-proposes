@@ -4,63 +4,83 @@
 
 ### Code decides. Evals judge.
 
-Field notes and measured experiments on building **reliable** LLM systems.
+A public notebook on AI engineering:<br/>
+hands-on builds, measured experiments and paper notes on making LLM systems **reliable**.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)
-![Status](https://img.shields.io/badge/status-in%20progress-orange)
+![Status](https://img.shields.io/badge/status-ongoing%20study-orange)
 ![Data](https://img.shields.io/badge/data-public%20or%20synthetic-success)
 
-[The idea](#the-idea) · [Principles](#principles) · [What's inside](#whats-inside) · [Log](#log) · [Experiment format](#experiment-format)
+[Why](#why-this-exists) · [The thread](#the-thread) · [What's inside](#whats-inside) · [Areas](#areas) · [Log](#log) · [Format](#experiment-format)
 
 </div>
 
 ---
 
-## The idea
+## Why this exists
 
-An LLM is a brilliant, unreliable collaborator. Most production failures come from
-asking it to *guarantee* things: permissions, arithmetic, confirmations, identifiers.
+I build LLM systems for a living, and I want to understand every layer of them well
+enough to explain it, break it and measure it. This repo is where that study happens
+in the open, with no end date:
 
-This repo takes those guarantees away from the model and gives them to code. The model
-only proposes; code checks every proposal before anything happens, and evals measure
-whether the whole thing works. One small experiment at a time.
+- **Build** each technique by hand, from the basics up, until it holds under tests.
+- **Measure** the questions that practice raises, instead of trusting intuition.
+- **Read** the research, replicate what matters and note where it does not hold.
+
+The long-term goal is to turn the strongest results into publishable work.
+
+## The thread
+
+The repo covers the whole stack, but one conviction runs through it: an LLM is a
+brilliant, unreliable collaborator, and most production failures come from asking it
+to *guarantee* things such as permissions, arithmetic, confirmations and identifiers.
+
+So the guarantees go to code. The model proposes; code checks every proposal before
+anything happens; evals tell you whether the system actually works.
 
 ```mermaid
 flowchart LR
-    U([User]) --> M["Model<br/><b>proposes</b>"]
-    M --> C{"Code<br/><b>decides</b>"}
+    U([User]) --> M
+    subgraph S["What evals judge"]
+        direction LR
+        M["Model<br/><b>proposes</b>"] --> C{"Code<br/><b>decides</b>"}
+    end
     C -- allowed --> A([Action])
     C -- denied --> R([Honest refusal])
-    E[["Evals<br/><b>judge</b>"]] -.-> M
-    E -.-> C
 ```
 
 > **The model** extracts, classifies and writes.<br/>
 > **Code** authorizes, verifies and composes.<br/>
 > **Evals** tell you whether any of it is true.
 
-## Principles
-
-| Principle | What it means |
-|---|---|
-| **Measure, don't vibe** | Every claim comes with a number, an interval and its cost. |
-| **Break it first** | Each entry starts with the test that reproduces the failure. |
-| **Code-level** | One small module with tests. No platforms, no scaffolding. |
-| **Negative results count** | What did not work is published with the evidence. |
-| **Reproducible** | One command, pinned versions, public or synthetic data. |
+Not every entry is about this split. Retrieval, voice or fine-tuning entries are here
+because you cannot decide where the model should stop without knowing what it can do.
 
 ## What's inside
 
-Two kinds of entries, added as the work happens.
+Three kinds of entries, each held to its own bar.
 
-| | Kind | What it is |
-|---|---|---|
-| 🔨 | **Exercises** | Hands-on builds of one technique: code, tests and a short note. |
-| 🔬 | **Experiments** | A question, a hypothesis and a measured answer. |
+| | Kind | What it is | The bar |
+|---|---|---|---|
+| 🔨 | **Exercise** | One technique built by hand | Working code, tests that run offline, a short note on what was learned |
+| 🔬 | **Experiment** | A question with a measured answer | Hypothesis written first, repeated runs, an interval, the cost, the limits |
+| 📄 | **Paper note** | A paper read or replicated | What it claims, how it measures it, what it does not show |
 
-<details>
-<summary><b>Areas covered</b></summary>
+Rules that apply to all of them:
+
+| Rule | What it means |
+|---|---|
+| **Code-level** | Small modules, not platforms. Nothing is scaffolded in advance. |
+| **Reproducible** | One command, pinned versions, a fixed seed where it applies. |
+| **Open data only** | Public or synthetic data. Nothing from an employer or a client. |
+| **Negative results count** | What did not work is published with the evidence. |
+| **Failures first** | When an entry is about a failure mode, it starts with the test that reproduces it. |
+
+## Areas
+
+<details open>
+<summary><b>Build</b> — exercises</summary>
 
 <br/>
 
@@ -79,6 +99,26 @@ Two kinds of entries, added as the work happens.
 | **Evals and observability** | Judges, confidence intervals, tracing, latency |
 | **AI product** | Attachments, tabular analysis, generated files |
 | **Models and core ML** | Local models, LoRA, classic baselines |
+| **Serving** | OpenAI-compatible endpoints, streaming, cancellation, degradation |
+
+</details>
+
+<details>
+<summary><b>Measure</b> — experiments</summary>
+
+<br/>
+
+| Area | Questions |
+|---|---|
+| **Experimental method** | Variance, ablations, significance with few cases, cost reporting |
+| **Agent reliability** | Tool and agent count, consistency, prompt versus code, long-context decay |
+| **Calibration and uncertainty** | Confidence, abstention, self-consistency, judge reliability |
+| **Retrieval in depth** | Synthetic eval sets, cross-lingual search, numbers and tables, thresholds |
+| **Output control** | Constrained decoding, schema failure rates, prompt optimization |
+| **Economics** | Cost-quality frontier, distillation, semantic caching |
+| **Data** | Datasets from traces, synthetic cases, drift |
+| **Measured security** | Attack success rate, injection channels, the cost of each defense |
+| **Voice in Spanish** | Transcription accuracy on regional Spanish, turn-taking, perceived latency |
 
 </details>
 
@@ -107,10 +147,13 @@ Start from [`templates/experiment.md`](templates/experiment.md).
 
 ## Layout
 
+Folders appear as the work happens.
+
 ```text
 the-model-proposes/
 ├── exercises/<area>/<entry>/      # hands-on builds
 ├── experiments/<area>/<entry>/    # measured experiments
+├── papers/<paper>.md              # reading and replication notes
 └── templates/experiment.md        # write-up template
 ```
 
