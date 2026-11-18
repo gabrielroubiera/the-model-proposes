@@ -27,5 +27,5 @@ What this does not show.
 ## Reproduce
 
 ```bash
-uv run python run.py
+python run.py
 ```

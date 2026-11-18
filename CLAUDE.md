@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Instructions for Claude Code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## What this repo is
 
@@ -52,6 +52,30 @@ Rules for the README:
 - Models are called through OpenRouter.
 - Run an exercise from the repo root, for example: `python exercises/llm-fundamentals/01-raw-api-call/client.py`.
 
+Commands, all from the repo root:
+
+```bash
+source venv/bin/activate
+pip install -r requirements.txt
+python exercises/<area>/<entry>/<file>.py
+```
+
+There are no tests and no test runner in `requirements.txt` yet. The root README names
+pytest as the runner. Tests must run offline: no network and no real key.
+
+## How entries connect
+
+- Entry folders are named `NN-slug`, where `NN` is the item number in `to-do.md` (`01-raw-api-call` is item 1). Experiments use the `E01`–`E49` ids.
+- A to-do item can be larger than what is built so far. Tick it only when everything the item lists is built, not when the folder first appears.
+- Later exercises build on earlier ones. `chat()` in `01-raw-api-call/client.py` is the base request that the rest of the LLM fundamentals module changes.
+- `client.py` reads `.env` and raises `RuntimeError` at import time when a variable is empty. Anything that imports it, tests included, needs the three variables set, even to fake values.
+
+## Experiments and paper notes
+
+- An experiment starts from [`templates/experiment.md`](templates/experiment.md). The hypothesis is written before anything is run. The result needs repeated runs, an interval, the cost and the limits.
+- A paper note says what the paper claims, how it measures it and what it does not show.
+- Negative results are published with their evidence. An entry about a failure mode starts with the test that reproduces it.
+
 ## Secrets
 
 - Never print, read aloud or ask for the value of a key. To debug `.env`, look only at variable names and value lengths.
@@ -65,6 +89,7 @@ Rules for the README:
 ## Repo conventions
 
 - Layout: `exercises/<area>/<entry>/`, `experiments/<area>/<entry>/`, `papers/<paper>.md`. Folders appear as the work happens; nothing is scaffolded in advance.
-- An exercise is done when it has working code, tests that run offline and a short note. Then tick it in `to-do.md` and add a line to the Log in the root `README.md`.
+- An exercise is done when it has working code and a short note. It needs offline tests only where there is logic that can break (a parser, a budget, a loop), not for code that just builds a request and sends it. Then tick it in `to-do.md` and add a line to the Log in the root `README.md`.
 - Public or synthetic data only. Nothing from an employer or a client.
-- Do not commit or push unless asked.
+- The Log table is newest first, one row per finished entry: `Date | Kind | Entry | Takeaway`.
+- Do not commit or push unless asked. Commit messages are `type: what changed and why`, for example `feat: call a model over plain HTTP to see the request and response unwrapped`.
