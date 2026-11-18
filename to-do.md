@@ -1,13 +1,13 @@
 # To-do
 
-Everything planned for this repo. Tick an item when its folder has code, tests and a short note.
+Everything planned for this repo. Tick an item when its folder has code, a short note, and tests where there is logic that can break.
 ★ = priority. Build items are numbered 1–116; experiments are E01–E49.
 
 ## Part I — Build
 
 ### 01 · LLM fundamentals
 
-- [ ] 1. Call a provider API with no framework: messages, system, streaming, tokens and cost per call.
+- [x] 1. Call a provider API with no framework: messages, system, streaming, tokens and cost per call.
 - [ ] 2. Compare temperature and `top_p` on the same question and record the variation.
 - [ ] 3. ★ Structured output three ways (JSON mode, tool calling, strict schema), forcing and handling failures.
 - [ ] 4. Parameter layer: do not send temperature when reasoning effort is set.

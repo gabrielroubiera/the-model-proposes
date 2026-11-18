@@ -63,7 +63,7 @@ Three kinds of entries, each held to its own bar.
 
 | | Kind | What it is | The bar |
 |---|---|---|---|
-| 🔨 | **Exercise** | One technique built by hand | Working code, tests that run offline, a short note on what was learned |
+| 🔨 | **Exercise** | One technique built by hand | Working code, offline tests where there is logic that can break, a short note on what was learned |
 | 🔬 | **Experiment** | A question with a measured answer | Hypothesis written first, repeated runs, an interval, the cost, the limits |
 | 📄 | **Paper note** | A paper read or replicated | What it claims, how it measures it, what it does not show |
 
@@ -128,6 +128,7 @@ Newest first. One line per finished exercise, experiment or paper note.
 
 | Date | Kind | Entry | Takeaway |
 |---|---|---|---|
+| 2026-11-17 | Exercise | [01 · Raw API call](exercises/llm-fundamentals/01-raw-api-call/) | A chat call is one POST with a list of messages. Streaming is the same request with `stream: true`, and `usage` comes in the last chunk. Reasoning took most of the completion tokens |
 | 2026-11-17 | — | Repository created | Experiment template in place |
 
 ## Experiment format
