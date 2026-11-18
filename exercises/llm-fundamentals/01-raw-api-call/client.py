@@ -15,7 +15,8 @@ if not LLM_PROVIDER_KEY or not LLM_PROVIDER_URL or not LLM_MODEL:
 def chat(
     model: str, 
     system_prompt: str, 
-    user_prompt: str
+    user_prompt: str,
+    **params
 ) -> dict:
     payload = {
         "model": model,
@@ -29,6 +30,7 @@ def chat(
                 "content": user_prompt
             }
         ],
+        **params
     }
 
     headers = {
@@ -97,7 +99,8 @@ if __name__ == "__main__":
     body = chat(
         model=LLM_MODEL,
         system_prompt="Response with one phrase.",
-        user_prompt="What is a token in LLM context?"
+        user_prompt="What is a token in LLM context?",
+        temperature=0
     )
 
     print(json.dumps(body, indent=2, ensure_ascii=False))

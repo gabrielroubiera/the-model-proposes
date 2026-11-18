@@ -51,6 +51,7 @@ All of it lives in [`client.py`](client.py).
 - `model` says which model to route to, as `provider/model-name`.
 - `messages` is the conversation as an ordered list. Each message has a `role` and a `content`.
 - The `system` message sets the rules. The `user` message is the question.
+- `**params` adds any extra keyword argument of `chat()` as one more key of the payload. The `__main__` block uses it to send `temperature=0`. Later exercises use it to send their own fields without changing this function.
 
 The model keeps no memory between calls. A multi-turn conversation means sending the whole list again, with earlier answers added as `assistant` messages.
 

@@ -128,6 +128,7 @@ Newest first. One line per finished exercise, experiment or paper note.
 
 | Date | Kind | Entry | Takeaway |
 |---|---|---|---|
+| 2026-11-17 | Exercise | [02 · Sampling](exercises/llm-fundamentals/02-sampling/) | Temperature 0 was not deterministic: 3 distinct answers of 5 with the provider fixed. `top_p` showed no effect. Five runs per setting show a direction, not a measured effect |
 | 2026-11-17 | Exercise | [01 · Raw API call](exercises/llm-fundamentals/01-raw-api-call/) | A chat call is one POST with a list of messages. Streaming is the same request with `stream: true`, and `usage` comes in the last chunk. Reasoning took most of the completion tokens |
 | 2026-11-17 | — | Repository created | Experiment template in place |
 
