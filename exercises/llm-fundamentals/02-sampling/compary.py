@@ -3,7 +3,7 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent.parent / "01-raw-api-call"))
 
-from client import chat, LLM_MODEL
+from client import chat, LLM_MODEL # type: ignore
 
 SYSTEM = "Response with one phrase."
 QUESTION = "What is a token in LLM context?"

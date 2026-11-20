@@ -60,8 +60,9 @@ pip install -r requirements.txt
 python exercises/<area>/<entry>/<file>.py
 ```
 
-There are no tests and no test runner in `requirements.txt` yet. The root README names
-pytest as the runner. Tests must run offline: no network and no real key.
+Tests use pytest, which is in `requirements.txt`. They sit next to the code as
+`test_<module>.py` and must run offline: no network and no real key. Run them from the
+repo root, for example: `pytest exercises/llm-fundamentals/03-structured-output/ -v`.
 
 ## How entries connect
 
