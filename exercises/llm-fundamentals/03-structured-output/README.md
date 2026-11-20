@@ -85,3 +85,12 @@ Seen in real runs:
 - **The raw text differed.** The strict schema came back pretty-printed, with line breaks and indentation. The other two came back on one line. The parsed dicts were the same, which is why replies are compared after parsing.
 - **Valid is not the same as correct.** In one run JSON mode and tool calling gave `product: "Pro Plan dashboard"` and the strict schema gave `"Pro Plan"`. Both pass the schema. Checking the value itself is a job for evals.
 - **The strict schema moved between providers.** It was served by `Wafer` in some runs and `DeepInfra` in another.
+
+## Open questions
+
+Measurable questions this exercise raises but cannot answer with a few runs. They are
+collected for phase 2 in [`experiments/BACKLOG.md`](../../../experiments/BACKLOG.md).
+
+- How often does each way (JSON mode, tool calling, strict schema) return a reply that `parse_ticket` rejects, over many tickets and runs? All of them passed on one clear ticket.
+- How often is a valid object wrong? `product` differed between ways in one run while all of them passed the schema.
+- Does the strict schema behave the same across the providers that served it? It was served by `Wafer` in some runs and `DeepInfra` in another.

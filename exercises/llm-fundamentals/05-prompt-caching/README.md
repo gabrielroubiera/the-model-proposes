@@ -52,3 +52,13 @@ Seen in real runs:
 - **A pinned provider is not a guarantee.** On CoreWeave the same prefix hit once and then missed on the third call. On Alibaba all three calls hit, the first one included, because an earlier run had already cached the prefix. Why CoreWeave missed was not checked.
 - **The cached count comes in blocks:** 2048, 2816, 2944, never the full 3047. The tail of the prompt, the user message included, is always processed again. This is read from the numbers, not from documentation.
 - **Latency did not follow the cache.** Hits took 1.5–2.5s and misses 1.6–2.4s, with one 14.7s outlier on a miss. At about 3000 tokens, any saving is smaller than network noise in these few calls.
+
+## Open questions
+
+Measurable questions this exercise raises but cannot answer with a few runs. They are
+collected for phase 2 in [`experiments/BACKLOG.md`](../../../experiments/BACKLOG.md).
+
+- With the provider pinned and the same prefix, how often is the cache missed? CoreWeave missed once in three calls; Alibaba hit three of three.
+- Does a cache hit lower latency with a longer prefix? No gain was detected at about 3000 tokens.
+- How long does a cached prefix last? On Alibaba the first call of a later run already hit.
+- What block size does each provider cache in? `cached` came as 2048, 2816 and 2944 of 3047.

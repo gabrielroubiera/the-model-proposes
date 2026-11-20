@@ -9,10 +9,10 @@ hands-on builds, measured experiments and paper notes on making LLM systems **re
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)
-![Status](https://img.shields.io/badge/status-ongoing%20study-orange)
+![Status](https://img.shields.io/badge/status-phase%201%20in%20progress-orange)
 ![Data](https://img.shields.io/badge/data-public%20or%20synthetic-success)
 
-[Why](#why-this-exists) · [The thread](#the-thread) · [What's inside](#whats-inside) · [Areas](#areas) · [Log](#log) · [Format](#experiment-format)
+[Why](#why-this-exists) · [The thread](#the-thread) · [What's inside](#whats-inside) · [Phases](#phases) · [Areas](#areas) · [Log](#log) · [Format](#experiment-format)
 
 </div>
 
@@ -77,10 +77,22 @@ Rules that apply to all of them:
 | **Negative results count** | What did not work is published with the evidence. |
 | **Failures first** | When an entry is about a failure mode, it starts with the test that reproduces it. |
 
+## Phases
+
+The work runs in two phases, in order.
+
+| Phase | What it is | Status |
+|---|---|---|
+| **1 · Build** | The fundamentals: each technique built by hand, to have a base to measure from | In progress |
+| **2 · Measure** | Experiments in the [experiment format](#experiment-format), starting when phase 1 ends | Not started |
+
+Phase 1 exercises end with open questions they cannot answer with a few runs. They are
+collected in [`experiments/BACKLOG.md`](experiments/BACKLOG.md) as input for phase 2.
+
 ## Areas
 
 <details open>
-<summary><b>Build</b> — exercises</summary>
+<summary><b>Phase 1 · Build</b> — exercises</summary>
 
 <br/>
 
@@ -104,7 +116,7 @@ Rules that apply to all of them:
 </details>
 
 <details>
-<summary><b>Measure</b> — experiments</summary>
+<summary><b>Phase 2 · Measure</b> — experiments</summary>
 
 <br/>
 
@@ -128,12 +140,12 @@ Newest first. One line per finished exercise, experiment or paper note.
 
 | Date | Kind | Entry | Takeaway |
 |---|---|---|---|
-| 2026-11-19 | Exercise | [06 · Prompt rewrite](exercises/context-engineering/06-prompt-rewrite/) | A vague prompt let the model pick a different role and shape per ticket. Role, `<ticket>` delimiters, a two-line format and two examples gave the same parseable shape every time. Both prompts refused the injected instruction, so this does not show what delimiters stop |
-| 2026-11-19 | Exercise | [05 · Prompt caching](exercises/llm-fundamentals/05-prompt-caching/) | A cached prefix cost 3–5 times less, but only while calls stayed on one provider, and even pinned it missed once. Latency showed no clear gain at about 3000 tokens |
-| 2026-11-19 | Exercise | [04 · Parameter layer](exercises/llm-fundamentals/04-parameter-layer/) | One function drops `temperature` when reasoning effort is set, and says so. The model reasoned even with no effort, and `high` used fewer reasoning tokens than `low` in one run: effort is a hint, not a budget |
-| 2026-11-19 | Exercise | [03 · Structured output](exercises/llm-fundamentals/03-structured-output/) | JSON mode, tool calling and a strict schema all returned a valid object on a clear ticket. Valid is not correct: `product` differed between ways. A tested validator with a capped retry decides what is accepted |
-| 2026-11-17 | Exercise | [02 · Sampling](exercises/llm-fundamentals/02-sampling/) | Temperature 0 was not deterministic: 3 distinct answers of 5 with the provider fixed. `top_p` showed no effect. Five runs per setting show a direction, not a measured effect |
-| 2026-11-17 | Exercise | [01 · Raw API call](exercises/llm-fundamentals/01-raw-api-call/) | A chat call is one POST with a list of messages. Streaming is the same request with `stream: true`, and `usage` comes in the last chunk. Reasoning took most of the completion tokens |
+| 2026-11-19 | Exercise | [06 · Prompt rewrite](exercises/context-engineering/06-prompt-rewrite/) | On three tickets, a vague prompt let the model pick a different role and shape per ticket in two runs. Role, `<ticket>` delimiters, a two-line format and two examples gave the same parseable shape on all three, in one run. Both prompts refused the injected instruction, so this does not show what delimiters stop |
+| 2026-11-19 | Exercise | [05 · Prompt caching](exercises/llm-fundamentals/05-prompt-caching/) | In four runs of three to six calls, cache hits cost 3–5 times less. Hits came only while consecutive calls stayed on one provider, and a pinned provider still missed once. No latency gain detected at about 3000 tokens |
+| 2026-11-19 | Exercise | [04 · Parameter layer](exercises/llm-fundamentals/04-parameter-layer/) | One function drops `temperature` when reasoning effort is set, and says so. In one run per setting, the model reasoned with no effort set, and `high` used fewer reasoning tokens than `low` (36 against 54). Effort did not act as a budget there |
+| 2026-11-19 | Exercise | [03 · Structured output](exercises/llm-fundamentals/03-structured-output/) | On one clear ticket, JSON mode, tool calling and a strict schema returned a valid object in every run. Valid is not correct: `product` differed between ways. A tested validator with a capped retry decides what is accepted |
+| 2026-11-17 | Exercise | [02 · Sampling](exercises/llm-fundamentals/02-sampling/) | Temperature 0 gave 3 distinct answers of 5 with the provider fixed. No `top_p` effect detected with n=5. DeepSeek's docs say its own API ignores `temperature` while thinking and raises `top_p` below 0.95 to 0.95, so the settings may not have been applied |
+| 2026-11-17 | Exercise | [01 · Raw API call](exercises/llm-fundamentals/01-raw-api-call/) | A chat call is one POST with a list of messages. Streaming is the same request with `stream: true`, and `usage` comes in the last chunk. In one call, reasoning took 128 of 158 completion tokens |
 | 2026-11-17 | — | Repository created | Experiment template in place |
 
 ## Experiment format

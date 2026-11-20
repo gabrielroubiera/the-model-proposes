@@ -91,7 +91,7 @@ The model keeps no memory between calls. A multi-turn conversation means sending
 | `choices[0].finish_reason` | Why it stopped: `stop` is normal, `length` means it was cut by the token limit |
 | `usage.prompt_tokens` | Tokens in the input (system + user) |
 | `usage.completion_tokens` | Tokens the model generated: the answer plus the reasoning |
-| `usage.completion_tokens_details.reasoning_tokens` | How many of those were reasoning. In one run, 128 of 158 |
+| `usage.completion_tokens_details.reasoning_tokens` | How many of those were reasoning. In one call, 128 of 158 |
 | `usage.cost` | What the call cost, in OpenRouter credits |
 | `model`, `provider` | Which model and provider actually served the call |
 
@@ -99,7 +99,16 @@ The model keeps no memory between calls. A multi-turn conversation means sending
 
 Seen when comparing the two calls in real runs:
 
-- **The answer and the token count change between calls.** Same model, same prompts, different text: 158 completion tokens in the normal call and 136 in the streamed one.
-- **The provider can change too.** One run was served by `Reka` for the normal call and by `InferenceNet` for the streamed one. OpenRouter routes each call on its own.
-- **A chunk is not a token.** One chunk carried `" need answer user"`, which is several tokens. The provider groups them as it likes.
-- **The first word takes a while.** The reasoning is streamed before the answer, and the script does not print it.
+- **The answer and the token count differed between the two calls.** Same model, same prompts, different text: 158 completion tokens in the normal call and 136 in the streamed one. That is one pair of calls; exercise 02 looks at the variation.
+- **The provider changed too.** One run was served by `Reka` for the normal call and by `InferenceNet` for the streamed one. According to OpenRouter's documentation, it routes each call on its own.
+- **A chunk was not a token.** One chunk carried `" need answer user"`, which looks like several tokens. How a provider groups tokens into chunks was not checked.
+- **The first word took a while.** The reasoning was streamed before the answer, and the script does not print it. The delay was seen, not timed.
+
+## Open questions
+
+Measurable questions this exercise raises but cannot answer with a few runs. They are
+collected for phase 2 in [`experiments/BACKLOG.md`](../../../experiments/BACKLOG.md).
+
+- What share of completion tokens goes to reasoning across many calls of the same question? One call gave 128 of 158.
+- How often does OpenRouter switch providers between identical calls when none is pinned? The normal and streamed calls went to different providers.
+- How much time passes before the first answer token in a stream, and how does it relate to the reasoning tokens? The delay was seen here, not timed.

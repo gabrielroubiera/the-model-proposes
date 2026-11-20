@@ -47,3 +47,12 @@ Seen in one run of each setting:
 - **The request without `temperature` went through** with `reasoning` set, and the answer was normal.
 - **The model reasoned with no effort set:** 59 reasoning tokens with temperature only.
 - **`high` did not reason more than `low`:** 36 against 54 reasoning tokens. On a one-sentence question and a single run, effort reads as a hint to the model, not a token budget. That is a direction to check, not a measured result.
+
+## Open questions
+
+Measurable questions this exercise raises but cannot answer with a few runs. They are
+collected for phase 2 in [`experiments/BACKLOG.md`](../../../experiments/BACKLOG.md).
+
+- Does reasoning effort change the number of reasoning tokens in a consistent direction? In one run `high` used 36 and `low` used 54.
+- Does the model reason on every call when no effort is set? One call with temperature only used 59 reasoning tokens.
+- Does sending `temperature` together with reasoning get rejected, ignored or applied? The docs claim was not reproduced; the call with it dropped simply worked.
