@@ -128,6 +128,7 @@ Newest first. One line per finished exercise, experiment or paper note.
 
 | Date | Kind | Entry | Takeaway |
 |---|---|---|---|
+| 2026-11-19 | Exercise | [06 · Prompt rewrite](exercises/context-engineering/06-prompt-rewrite/) | A vague prompt let the model pick a different role and shape per ticket. Role, `<ticket>` delimiters, a two-line format and two examples gave the same parseable shape every time. Both prompts refused the injected instruction, so this does not show what delimiters stop |
 | 2026-11-19 | Exercise | [05 · Prompt caching](exercises/llm-fundamentals/05-prompt-caching/) | A cached prefix cost 3–5 times less, but only while calls stayed on one provider, and even pinned it missed once. Latency showed no clear gain at about 3000 tokens |
 | 2026-11-19 | Exercise | [04 · Parameter layer](exercises/llm-fundamentals/04-parameter-layer/) | One function drops `temperature` when reasoning effort is set, and says so. The model reasoned even with no effort, and `high` used fewer reasoning tokens than `low` in one run: effort is a hint, not a budget |
 | 2026-11-19 | Exercise | [03 · Structured output](exercises/llm-fundamentals/03-structured-output/) | JSON mode, tool calling and a strict schema all returned a valid object on a clear ticket. Valid is not correct: `product` differed between ways. A tested validator with a capped retry decides what is accepted |
