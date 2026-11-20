@@ -10,7 +10,7 @@ Everything planned for this repo. Tick an item when its folder has code, a short
 - [x] 1. Call a provider API with no framework: messages, system, streaming, tokens and cost per call.
 - [x] 2. Compare temperature and `top_p` on the same question and record the variation.
 - [x] 3. ★ Structured output three ways (JSON mode, tool calling, strict schema), forcing and handling failures.
-- [ ] 4. Parameter layer: do not send temperature when reasoning effort is set.
+- [x] 4. Parameter layer: do not send temperature when reasoning effort is set.
 - [ ] 5. Prompt caching: measure cost and latency with and without a cached prefix.
 
 **Study:** BPE tokenization, logits and sampling, causes of hallucination, reasoning models, why temperature 0 is not deterministic.
