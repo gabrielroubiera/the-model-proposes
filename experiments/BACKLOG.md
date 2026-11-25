@@ -51,3 +51,10 @@ planned experiment in [`to-do.md`](../to-do.md), the id is noted.
 - How far is a characters-per-token estimate from `usage.prompt_tokens` on normal English and Spanish text? It fell short by about 60% on a synthetic pattern.
 - Does the model use the truncation and omission notes when it answers, over many prompts?
 - What does a provider do when the prompt really goes past its window: an error, a silent cut or something else?
+
+## From [08 · History compaction](../exercises/context-engineering/08-history-compaction/)
+
+- How often does an incremental summary lose or change an identifier over long conversations and many runs?
+- Does the instruction to keep identifiers exact change how often they survive?
+- At what history length does a summary start to save more space than it costs in calls?
+- How often does a model with a window-only context invent a fact it no longer has, instead of saying it does not know?
