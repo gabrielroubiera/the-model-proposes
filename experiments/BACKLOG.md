@@ -58,3 +58,9 @@ planned experiment in [`to-do.md`](../to-do.md), the id is noted.
 - Does the instruction to keep identifiers exact change how often they survive?
 - At what history length does a summary start to save more space than it costs in calls?
 - How often does a model with a window-only context invent a fact it no longer has, instead of saying it does not know?
+
+## From [09 · Pre-LLM gates](../exercises/context-engineering/09-pre-llm-gates/)
+
+- How often do the gates stop a real question, on a set of real-looking support messages in Spanish and English? Two of eight synthetic messages were false positives.
+- What share of real traffic do the gates answer without a call, and what does that save?
+- Does a small classifier or a cheap model separate greetings and noise better than these rules, at what cost per message?
