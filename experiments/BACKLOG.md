@@ -64,3 +64,9 @@ planned experiment in [`to-do.md`](../to-do.md), the id is noted.
 - How often do the gates stop a real question, on a set of real-looking support messages in Spanish and English? Two of eight synthetic messages were false positives.
 - What share of real traffic do the gates answer without a call, and what does that save?
 - Does a small classifier or a cheap model separate greetings and noise better than these rules, at what cost per message?
+
+## From [10 · Query rewriting](../exercises/context-engineering/10-query-rewriting/)
+
+- Does retrieval find the right documents more often with the rewritten query than with the raw message, on a set of follow-ups?
+- How often does a rewrite add or change an identifier that the user did not mean, over many conversations and runs?
+- How often does an instruction inside the message come out of the rewrite as a query that passes the shape check?
