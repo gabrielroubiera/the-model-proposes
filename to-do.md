@@ -18,7 +18,7 @@ Everything planned for this repo. Tick an item when its folder has code, a short
 ### 02 · Context engineering
 
 - [x] 6. Rewrite a bad prompt with role, few-shot, delimiters and output format.
-- [ ] 7. ★ Window budget: per-tool caps, accumulated cap per turn, and an error before calling the model when the base prompt does not fit.
+- [x] 7. ★ Window budget: per-tool caps, accumulated cap per turn, and an error before calling the model when the base prompt does not fit.
 - [ ] 8. History compaction: sliding window, incremental summary and mixed; compare what is lost.
 - [ ] 9. Pre-LLM gates: gibberish detector and greetings that skip RAG.
 - [ ] 10. Query rewriting with history, degrading to the raw message.

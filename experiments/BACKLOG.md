@@ -45,3 +45,9 @@ planned experiment in [`to-do.md`](../to-do.md), the id is noted.
 - Do the `<ticket>` delimiters lower the rate at which injected instructions are obeyed? Overlaps E41.
 - How often does the rewritten prompt break its two-line format over many tickets and runs?
 - How much does each piece (role, delimiters, format, few-shot) contribute? Overlaps E02.
+
+## From [07 · Window budget](../exercises/context-engineering/07-window-budget/)
+
+- How far is a characters-per-token estimate from `usage.prompt_tokens` on normal English and Spanish text? It fell short by about 60% on a synthetic pattern.
+- Does the model use the truncation and omission notes when it answers, over many prompts?
+- What does a provider do when the prompt really goes past its window: an error, a silent cut or something else?
