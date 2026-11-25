@@ -70,3 +70,9 @@ planned experiment in [`to-do.md`](../to-do.md), the id is noted.
 - Does retrieval find the right documents more often with the rewritten query than with the raw message, on a set of follow-ups?
 - How often does a rewrite add or change an identifier that the user did not mean, over many conversations and runs?
 - How often does an instruction inside the message come out of the rewrite as a query that passes the shape check?
+
+## From [11 · Prompt composition](../exercises/context-engineering/11-prompt-composition/)
+
+- Does putting the ticket in the user message instead of the system message change how often injected instructions are obeyed? Overlaps E41.
+- Does the fixed-first order give more cache hits than the same fragments in another order, on a pinned provider?
+- How often does the model claim access to data it was not given, over many tickets and runs?

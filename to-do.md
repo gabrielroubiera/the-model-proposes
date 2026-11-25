@@ -22,7 +22,7 @@ Everything planned for this repo. Tick an item when its folder has code, a short
 - [x] 8. History compaction: sliding window, incremental summary and mixed; compare what is lost.
 - [x] 9. Pre-LLM gates: gibberish detector and greetings that skip RAG.
 - [x] 10. Query rewriting with history, degrading to the raw message.
-- [ ] 11. Prompt composition from fragments, never `.format()` over the full text.
+- [x] 11. Prompt composition from fragments, never `.format()` over the full text.
 
 **Study:** Lost in the middle, context ordering, prefix caching, when more context hurts.
 
